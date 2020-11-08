@@ -15,17 +15,21 @@ var elFooterDiv = document.querySelector('.site-footer-div');
 var elResultParagraph = document.querySelector('.result-text');
 
 var name = prompt('Ismingiz:').trim().toUpperCase();
-var money = parseFloat(prompt(`Assalomu aleykum ${name}! Pul miqdorini kiriting: (so'm)`), 10);
-
 var wholeAmount = TICKET_PRICE_IN_UZS + HOTEL_PRICE_IN_UZS + MUSEUM_PRICE_IN_UZS;
+var money = prompt(`Assalomu aleykum ${name}! Pul miqdorini kiriting: (so'm)`);
 
-if (!isNaN(money)) {
-  if (money >= wholeAmount) {
-    elResultParagraph.textContent = `${name} safaringiz bexatar bo'lsin!`;
+if (money !== '') {
+  money = parseFloat(money, 10);
+  if (!isNaN(money)) {
+    if (money >= wholeAmount) {
+      elResultParagraph.textContent = `${name} safaringiz bexatar bo'lsin!`;
+    } else {
+      elResultParagraph.textContent = `${name} ozgina sabr qilish kerak bo'lar ekan`;
+    }
+    elFooterDiv.classList.remove('d-none');
   } else {
-    elResultParagraph.textContent = `${name} ozgina sabr qilish kerak bo'lar ekan`;
+    alert('Pul miqdorini raqamda kiriting!');
   }
-  elFooterDiv.classList.remove('d-none');
 } else {
-  alert('Pul miqdorini raqamda kiriting!');
+  alert('Pul miqdorini kiriting!');
 }
