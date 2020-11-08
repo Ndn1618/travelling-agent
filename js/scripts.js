@@ -1,14 +1,31 @@
-var money = parseInt(prompt('Assalomu aleykum! Pul miqdorini kiriting: (so\'m)'), 10);
-var amount = Math.ceil('460716131039718.2');
-var footerDiv = document.querySelector('.site-footer-div');
-var pargraph = document.createElement('p');
-pargraph.textContent = '';
-footerDiv.append(pargraph);
+// Variables
+var USD_IN_UZS = 9433.34;
+var EURO_IN_UZS = 10354.03;
 
-console.log(pargraph);
+var TICKET_PRICE_IN_USD = 500;
+var HOTEL_PRICE_IN_EURO = 250;
+var MUSEUM_PRICE_IN_EURO =120;
 
-if (money >= amount) {
-  pargraph.textContent = 'Alisher, safaringiz bexatar bo\'lsin!';
+var TICKET_PRICE_IN_UZS = 500 * USD_IN_UZS;
+var HOTEL_PRICE_IN_UZS = 250 * EURO_IN_UZS;
+var MUSEUM_PRICE_IN_UZS =120 * EURO_IN_UZS;
+
+// Choosing elements
+var elFooterDiv = document.querySelector('.site-footer-div');
+var elResultParagraph = document.querySelector('.result-text');
+
+var name = prompt('Ismingiz:').trim().toUpperCase();
+var money = parseFloat(prompt(`Assalomu aleykum ${name}! Pul miqdorini kiriting: (so'm)`), 10);
+
+var wholeAmount = TICKET_PRICE_IN_UZS + HOTEL_PRICE_IN_UZS + MUSEUM_PRICE_IN_UZS;
+
+if (!isNaN(money)) {
+  if (money >= wholeAmount) {
+    elResultParagraph.textContent = `${name} safaringiz bexatar bo'lsin!`;
+  } else {
+    elResultParagraph.textContent = `${name} ozgina sabr qilish kerak bo'lar ekan`;
+  }
+  elFooterDiv.classList.remove('d-none');
 } else {
-  pargraph.textContent = 'Alisher, ozgina sabr qilish kerak bo\'lar ekan';
+  alert('Pul miqdorini raqamda kiriting!');
 }
